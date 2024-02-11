@@ -1,3 +1,4 @@
+from requests import get
 from sys import argv
 
 
@@ -6,4 +7,10 @@ def get_endpoints(file):
         return f.readlines()
 
 
-print(get_endpoints(argv[1]))
+def api_call(endpoint):
+    return get(endpoint.rstrip()).json()
+
+
+endpoints = get_endpoints(argv[1])
+
+print(api_call(endpoints[0]))
